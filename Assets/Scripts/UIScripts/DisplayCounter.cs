@@ -13,4 +13,11 @@ public class DisplayCounter : MonoBehaviour
         
         _text.text = _number.ToString();
     }
+
+    public void Reset()
+    {
+        _number = 0;
+        
+        _text.text = _number.ToString();
+    }
 }

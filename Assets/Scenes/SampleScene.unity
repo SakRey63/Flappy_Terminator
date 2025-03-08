@@ -806,14 +806,15 @@ MonoBehaviour:
   _poolCapaciti: 15
   _poolMaxSize: 30
   _point: {fileID: 760344932}
-  _minPositionY: -4
-  _maxPositionY: 5
+  _minPositionY: -3.5
+  _maxPositionY: 4.5
   _enemies:
-  - {fileID: 84038463867122141, guid: 96a2c2f1245b0264686c07a3dc25c8b8, type: 3}
-  - {fileID: 5885954764552383154, guid: 3899fe00dd9cd03479ff03b485975590, type: 3}
-  - {fileID: 7607156871836213007, guid: 7a159825911ef7741a1ad93716ff9676, type: 3}
-  - {fileID: 7082361774164982785, guid: 212836deaf42a1c4490b5db4f08ad477, type: 3}
+  - {fileID: 512563903589375045, guid: 96a2c2f1245b0264686c07a3dc25c8b8, type: 3}
+  - {fileID: 2803472397025781121, guid: 3899fe00dd9cd03479ff03b485975590, type: 3}
+  - {fileID: 5737129960196572098, guid: 7a159825911ef7741a1ad93716ff9676, type: 3}
+  - {fileID: 4843687454528194044, guid: 212836deaf42a1c4490b5db4f08ad477, type: 3}
   _delay: 2
+  _game: {fileID: 519420035}
 --- !u!1 &404942809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1018,6 @@ MonoBehaviour:
   _poolMaxSize: 30
   _bullet: {fileID: 4054593409557924252, guid: 3bcfa8532c0a6ed499120cc2780098b5, type: 3}
   _transform: {fileID: 511897690}
-  _playerView: {fileID: 558224144}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1160,7 @@ MonoBehaviour:
   _player: {fileID: 558224142}
   _startScreen: {fileID: 1118651365}
   _endGameScreen: {fileID: 1231116375}
+  _display: {fileID: 75863042}
 --- !u!1 &558224137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1260,8 @@ MonoBehaviour:
   _inputReader: {fileID: 519420034}
   _explosion: {fileID: 1445299937}
   _mover: {fileID: 558224141}
-  _scanner: {fileID: 1051850582}
+  _detector: {fileID: 1051850582}
+  _game: {fileID: 519420035}
 --- !u!114 &558224144
 MonoBehaviour:
   m_ObjectHideFlags: 0

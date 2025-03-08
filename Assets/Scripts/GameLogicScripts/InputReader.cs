@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    public event Action Attack;
-    public event Action Force; 
+    public event Action Attacked;
+    public event Action Forced; 
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            Attack?.Invoke();
+            Attacked?.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Force?.Invoke();
+            Forced?.Invoke();
         }
     }
 }

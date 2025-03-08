@@ -5,7 +5,7 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] private int _poolCapaciti = 15;
     [SerializeField] private int _poolMaxSize = 30;
-    
+
     private ObjectPool<T> _pool;
     
     protected T Prefab;

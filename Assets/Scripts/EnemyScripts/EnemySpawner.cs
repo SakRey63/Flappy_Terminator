@@ -8,7 +8,8 @@ public class EnemySpawner : Spawner<Enemy>
     [SerializeField] private float _minPositionY = -4f;
     [SerializeField] private float _maxPositionY = 5f;
     [SerializeField] private Enemy[] _enemies;
-    [SerializeField] private float _delay = 1.5f;
+    [SerializeField] private float _delay = 2f;
+    [SerializeField] private Game _game;
 
     private void Start()
     {
@@ -34,16 +35,20 @@ public class EnemySpawner : Spawner<Enemy>
     
     protected override void GetAction(Enemy enemy)
     {
-        enemy.Collision += ReturnInPool;
+        enemy.Achieved += ReturnToPool;
+        
+        enemy.SetGame(_game);
         
         enemy.transform.position = new Vector2(_point.position.x, Random.Range(_minPositionY, _maxPositionY));
         
         base.GetAction(enemy);
     }
 
-    private void ReturnInPool(Enemy enemy)
+    private void ReturnToPool(Enemy enemy)
     {
-        enemy.Collision -= ReturnInPool;
+        enemy.Achieved -= ReturnToPool;
+        
+        enemy.Reset();
         
         Release(enemy);
     }

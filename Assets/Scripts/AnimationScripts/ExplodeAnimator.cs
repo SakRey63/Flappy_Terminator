@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimationExplosion : MonoBehaviour
+public class ExplodeAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5341372049831373134}
   - component: {fileID: 7536948861078533898}
   - component: {fileID: 4054593409557924252}
+  - component: {fileID: 8683347918593733766}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -81,10 +82,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4358c56a522b91644850e47f2d310a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _flipper: {fileID: 105011145374384536}
-  _animation: {fileID: 370917788191978592}
+  _mover: {fileID: 8683347918593733766}
   _delay: 0.7
+--- !u!114 &8683347918593733766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834972169103615390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d7572fd35a7004d96c35aec380d232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!1 &5871764744761325543
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,10 +107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9084645297993604308}
-  - component: {fileID: 105011145374384536}
   - component: {fileID: 6468155735069662770}
   - component: {fileID: 5904962661471426064}
-  - component: {fileID: 370917788191978592}
+  - component: {fileID: 105011145374384536}
   m_Layer: 0
   m_Name: modelBullet
   m_TagString: Untagged
@@ -120,18 +132,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5341372049831373134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &105011145374384536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5871764744761325543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8b905eba8313f4c95ba12660f2086d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &6468155735069662770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -205,7 +205,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &370917788191978592
+--- !u!114 &105011145374384536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,7 +214,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5871764744761325543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729f72df39951f8438a7c0b55ee8e934, type: 3}
+  m_Script: {fileID: 11500000, guid: bc8b905eba8313f4c95ba12660f2086d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 5904962661471426064}
