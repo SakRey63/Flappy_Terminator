@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         
         if (_detector.IsDestroyed)
         {
-            ChangeStatus();
+            Dead();
             
             _detector.ChangeStatus();
         }
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         _isForce = true;
     }
 
-    private void ChangeStatus()
+    private void Dead   ()
     {
         Killed?.Invoke();
     }

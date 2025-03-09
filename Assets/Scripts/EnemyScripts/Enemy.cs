@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     private float _direction = -1;
     private Game _game;
 
-    public event Action<Enemy> Achieved;
+    public event Action<Enemy> ReturnToPool;
     
     private void OnEnable()
     {     
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     {
         if (_detector.IsDestroyed)
         {
-            Achieved?.Invoke(this);
+            ReturnToPool?.Invoke(this);
         }
     }
 
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.TryGetComponent<Finish>(out _))
         {
-            Achieved?.Invoke(this);
+            ReturnToPool?.Invoke(this);
         }
     }
 
@@ -67,6 +67,6 @@ public class Enemy : MonoBehaviour
     {
         _game.FinishedGame -= Finished;
         
-        Achieved?.Invoke(this);
+        ReturnToPool?.Invoke(this);
     }
 }

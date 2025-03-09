@@ -6,11 +6,8 @@ public class Detector : MonoBehaviour
     [SerializeField] private ExplodeAnimator _explosion;
     [SerializeField] private float _delay = 0.7f;
 
-    private bool _isDestroyed = false;
-    private float _direction;
-
-    public bool IsDestroyed => _isDestroyed;
-    public float Direction => _direction;
+    public bool IsDestroyed { get; private set; }
+    public float Direction { get; private set; }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,7 +17,7 @@ public class Detector : MonoBehaviour
         }
         else if(other.TryGetComponent(out Bullet bullet))
         {
-            if (bullet.Direction != _direction)
+            if (bullet.Direction != Direction)
             {
                 bullet.ReturnToPool();
                 
@@ -37,16 +34,16 @@ public class Detector : MonoBehaviour
         
         yield return delay;
 
-        _isDestroyed = true;
+        IsDestroyed = true;
     }
 
     public void ChangeStatus()
     {
-        _isDestroyed = false;
+        IsDestroyed = false;
     }
 
     public void SetDirection(float direction)
     {
-        _direction = direction;
+        Direction = direction;
     }
 }

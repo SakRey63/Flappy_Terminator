@@ -35,7 +35,7 @@ public class EnemySpawner : Spawner<Enemy>
     
     protected override void GetAction(Enemy enemy)
     {
-        enemy.Achieved += ReturnToPool;
+        enemy.ReturnToPool += ReturnToPool;
         
         enemy.SetGame(_game);
         
@@ -46,7 +46,7 @@ public class EnemySpawner : Spawner<Enemy>
 
     private void ReturnToPool(Enemy enemy)
     {
-        enemy.Achieved -= ReturnToPool;
+        enemy.ReturnToPool -= ReturnToPool;
         
         enemy.Reset();
         

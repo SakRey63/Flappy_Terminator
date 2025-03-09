@@ -7,57 +7,55 @@ public class Bullet : MonoBehaviour
     [SerializeField] private BulletMover _mover;
     [SerializeField] private float _delay = 0.7f;
     
-    private bool _isTarget;
-    private float _direction;
     private Game _game;
 
-    public bool IsTarget => _isTarget;
-    public float Direction => _direction;
+    public bool IsTarget{ get; private set; }
+    public float Direction { get; private set; }
     
     public event Action<Bullet> AchievedTarget;
 
     private void Update()
     {
-        _mover.Move(_direction);
+        _mover.Move(Direction);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent<Finish>(out _))
         {
-            _isTarget = false;
+            IsTarget = false;
             
             AchievedTarget?.Invoke(this);
         }
         else if (other.TryGetComponent(out Detector detector))
         {
-            if (detector.Direction >= _direction)
+            if (detector.Direction >= Direction)
             {
-                _isTarget = false;
+                IsTarget = false;
             }
             else
             {
-                _isTarget = true;
+                IsTarget = true;
             }
         }
     }
 
     public void Reset()
     {
-        _direction = 0;
+        Direction = 0;
 
-        _isTarget = false;
+        IsTarget = false;
     }
 
     public void SetParameters(float direction, Game game)
     {
-        _direction = direction;
+        Direction = direction;
         
         _game = game;
 
         _game.FinishedGame += ReturnToPool;
         
-        _flipper.CreateDirection(_direction);
+        _flipper.CreateDirection(Direction);
     }
     
     public void ReturnToPool()

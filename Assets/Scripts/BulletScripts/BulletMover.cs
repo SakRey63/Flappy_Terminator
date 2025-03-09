@@ -8,7 +8,7 @@ public class BulletMover : MonoBehaviour
     {
         if (direction < 0)
         {
-            transform.Translate(Vector3.left * _speed * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.left * _speed * Time.deltaTime, Space.Self);
         }
         else
         {
