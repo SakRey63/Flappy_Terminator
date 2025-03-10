@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 7342505491072137962}
   - component: {fileID: 2803472397025781121}
   - component: {fileID: -8892804686684905787}
+  - component: {fileID: 7164475087803618564}
   m_Layer: 0
   m_Name: enemy_zig_zag-sheet_0
   m_TagString: Untagged
@@ -280,6 +281,7 @@ MonoBehaviour:
   _detector: {fileID: 6731318279459656127}
   _exploder: {fileID: -8892804686684905787}
   _delay: 1
+  _timeService: {fileID: 7164475087803618564}
 --- !u!114 &-8892804686684905787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +296,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosion: {fileID: 4494138508801071085}
   _delay: 0.7
+--- !u!114 &7164475087803618564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572646135141402046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df258df236ce1a548975f8886dd15344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8680730670847942818
 GameObject:
   m_ObjectHideFlags: 0

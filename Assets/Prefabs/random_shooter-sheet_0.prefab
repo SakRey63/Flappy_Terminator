@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 1254568713618023299}
   - component: {fileID: 4843687454528194044}
   - component: {fileID: 5666233784628056720}
+  - component: {fileID: 1455121659410063885}
   m_Layer: 0
   m_Name: random_shooter-sheet_0
   m_TagString: Untagged
@@ -280,6 +281,7 @@ MonoBehaviour:
   _detector: {fileID: 57385530743934578}
   _exploder: {fileID: 5666233784628056720}
   _delay: 1
+  _timeService: {fileID: 1455121659410063885}
 --- !u!114 &5666233784628056720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +296,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosion: {fileID: 4157226758279214219}
   _delay: 0.7
+--- !u!114 &1455121659410063885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319949606279350233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df258df236ce1a548975f8886dd15344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3867159928885750458
 GameObject:
   m_ObjectHideFlags: 0

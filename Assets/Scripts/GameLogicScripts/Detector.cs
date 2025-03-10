@@ -16,7 +16,7 @@ public class Detector : MonoBehaviour
         {
             if (bullet.Direction != Direction)
             {
-                bullet.ReturnToPool();
+                bullet.EndTime();
                 
                 IsDestroyed = true;
             }

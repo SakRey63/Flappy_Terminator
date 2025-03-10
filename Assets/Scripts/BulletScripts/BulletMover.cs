@@ -4,13 +4,8 @@ public class BulletMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     
-    public void MoveEnemy()
+    public void Move(Vector2 direction)
     {
-        transform.Translate(Vector3.left * _speed * Time.deltaTime, Space.Self);
-    }
-
-    public void MovePlayer()
-    {
-        transform.Translate(Vector3.right * _speed * Time.deltaTime, Space.Self);
+        transform.Translate(direction * (_speed * Time.deltaTime), Space.Self);
     }
 }

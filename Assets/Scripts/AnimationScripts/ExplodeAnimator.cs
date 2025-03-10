@@ -6,6 +6,6 @@ public class ExplodeAnimator : MonoBehaviour
 
     public void ExplosionAnimation(bool isPlaying)
     {
-        _animator.SetBool(AnimatorData.Params.IsExplosion, isPlaying);
+        _animator.SetBool(AnimatorData.Params.Explosion, isPlaying);
     }
 }

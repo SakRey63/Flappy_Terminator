@@ -2,24 +2,32 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IReturnableToPool
 {
     [SerializeField] private BulletSpawner _spawner;
     [SerializeField] private Detector _detector;
     [SerializeField] private Exploder _exploder;
     [SerializeField] private float _delay;
+    [SerializeField] private TimeService _timeService;
     
     private float _direction = -1;
 
     public bool IsDestroyed { get; private set; }
 
-    public event Action<Enemy> ReturnToPool;
+    public event Action<Enemy> Destroy;
     
     private void OnEnable()
     {     
+        _timeService.ReturnableToPool += EndTime;
+        
         StartCoroutine(RepeatAttack());
         
         SetDirection();
+    }
+
+    private void OnDisable()
+    {
+        _timeService.ReturnableToPool -= EndTime;
     }
 
     private void Update()
@@ -41,19 +49,14 @@ public class Enemy : MonoBehaviour
         {
             _detector.SetStatus();
             
-            Finished();
+            EndTime();
         }
         
         if (_exploder.IsExplosion)
         {
             _exploder.SetStatus();
             
-            Finished();
-        }
-        
-        if (Time.timeScale == 0)
-        {
-            Finished();
+            EndTime();
         }
     }
 
@@ -80,9 +83,9 @@ public class Enemy : MonoBehaviour
     {
         _detector.SetDirection(_direction);
     }
-    
-    private void Finished()
+
+    public void EndTime()
     {
-        ReturnToPool?.Invoke(this);
+        Destroy?.Invoke(this);
     }
 }

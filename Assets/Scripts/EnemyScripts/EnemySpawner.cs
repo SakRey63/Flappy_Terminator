@@ -36,16 +36,16 @@ public class EnemySpawner : Spawner<Enemy>
     
     protected override void SetAction(Enemy enemy)
     {
-        enemy.ReturnToPool += ReturnToPool;
+        enemy.Destroy += Destroy;
         
         enemy.transform.position = new Vector2(_point.position.x, Random.Range(_minPositionY, _maxPositionY));
         
         base.SetAction(enemy);
     }
 
-    private void ReturnToPool(Enemy enemy)
+    private void Destroy(Enemy enemy)
     {
-        enemy.ReturnToPool -= ReturnToPool;
+        enemy.Destroy -= Destroy;
 
         if (enemy.IsDestroyed)
         {

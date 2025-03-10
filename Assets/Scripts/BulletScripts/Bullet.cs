@@ -1,29 +1,35 @@
 using System;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IReturnableToPool
 {
     [SerializeField] private Flipper _flipper;
     [SerializeField] private BulletMover _mover;
+    [SerializeField] private TimeService _timeService;
     
     public float Direction { get; private set; }
     
     public event Action<Bullet> AchievedTarget;
 
+    private void OnEnable()
+    {
+        _timeService.ReturnableToPool += EndTime;
+    }
+
+    private void OnDisable()
+    {
+        _timeService.ReturnableToPool -= EndTime;
+    }
+
     private void Update()
     {
         if (Direction < 0)
         {
-            _mover.MoveEnemy();
+            _mover.Move(Vector2.left);
         }
         else
         {
-            _mover.MovePlayer();
-        }
-
-        if (Time.timeScale == 0)
-        {
-            ReturnToPool();
+            _mover.Move(Vector2.right);
         }
     }
 
@@ -42,7 +48,7 @@ public class Bullet : MonoBehaviour
         _flipper.CreateDirection(Direction);
     }
     
-    public void ReturnToPool()
+    public void EndTime()
     {
         AchievedTarget?.Invoke(this);
     }

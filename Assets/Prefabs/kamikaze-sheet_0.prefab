@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 4531315532535234790}
   - component: {fileID: 5737129960196572098}
   - component: {fileID: 6512258762649651742}
+  - component: {fileID: 1159240370606105199}
   m_Layer: 0
   m_Name: kamikaze-sheet_0
   m_TagString: Untagged
@@ -328,6 +329,7 @@ MonoBehaviour:
   _detector: {fileID: 7016928472400015099}
   _exploder: {fileID: 6512258762649651742}
   _delay: 1
+  _timeService: {fileID: 1159240370606105199}
 --- !u!114 &6512258762649651742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,3 +344,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosion: {fileID: 8177700225197188179}
   _delay: 0.7
+--- !u!114 &1159240370606105199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007112802665824885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df258df236ce1a548975f8886dd15344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
