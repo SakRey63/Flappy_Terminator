@@ -6,32 +6,54 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private BulletSpawner _spawner;
     [SerializeField] private Detector _detector;
-    [SerializeField] private ExplodeAnimator _explosion;
+    [SerializeField] private Exploder _exploder;
     [SerializeField] private float _delay;
     
     private float _direction = -1;
-    private Game _game;
+
+    public bool IsDestroyed { get; private set; }
 
     public event Action<Enemy> ReturnToPool;
     
     private void OnEnable()
     {     
         StartCoroutine(RepeatAttack());
+        
+        SetDirection();
     }
 
     private void Update()
     {
         if (_detector.IsDestroyed)
         {
-            ReturnToPool?.Invoke(this);
-        }
-    }
+            _detector.SetStatus();
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent<Finish>(out _))
+            IsDestroyed = true;
+            
+            StopCoroutine(RepeatAttack());
+            
+            _detector.gameObject.SetActive(false);
+            
+            _exploder.Explode();
+        }
+
+        if (_detector.IsFinished)
         {
-            ReturnToPool?.Invoke(this);
+            _detector.SetStatus();
+            
+            Finished();
+        }
+        
+        if (_exploder.IsExplosion)
+        {
+            _exploder.SetStatus();
+            
+            Finished();
+        }
+        
+        if (Time.timeScale == 0)
+        {
+            Finished();
         }
     }
 
@@ -43,30 +65,24 @@ public class Enemy : MonoBehaviour
         {
             yield return delay;
 
-            _spawner.СreateBullet(transform.rotation, _direction, _game);
+            _spawner.SetParametersShot(transform.rotation, _direction);
         }
     }
     
     public void Reset()
     {
-        _explosion.ExplosionAnimation(false);
+        _detector.gameObject.SetActive(true);
         
-        _detector.ChangeStatus();
+        IsDestroyed = false;
     }
 
-    public void SetGame(Game game)
+    private void SetDirection()
     {
-        _game = game;
-        
-        _game.FinishedGame += Finished;
-        
         _detector.SetDirection(_direction);
     }
     
     private void Finished()
     {
-        _game.FinishedGame -= Finished;
-        
         ReturnToPool?.Invoke(this);
     }
 }

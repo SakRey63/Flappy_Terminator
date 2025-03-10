@@ -240,6 +240,57 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &35763098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35763099}
+  - component: {fileID: 35763100}
+  m_Layer: 0
+  m_Name: Mover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &35763099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35763098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 558224140}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &35763100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35763098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1598e151528c74ea9a51b800892f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tapeForce: 4
+  _speed: 2.5
+  _rotationSpeed: 1
+  _maxRotationZ: 35
+  _minRotationZ: -60
+  _rigidbody2D: {fileID: 558224139}
+  _transform: {fileID: 558224140}
 --- !u!1 &43222193
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +865,7 @@ MonoBehaviour:
   - {fileID: 5737129960196572098, guid: 7a159825911ef7741a1ad93716ff9676, type: 3}
   - {fileID: 4843687454528194044, guid: 212836deaf42a1c4490b5db4f08ad477, type: 3}
   _delay: 2
-  _game: {fileID: 519420035}
+  _display: {fileID: 75863042}
 --- !u!1 &404942809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f262386828c99e45a2a824e14d3acf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _keyE: 101
+  _keySpace: 32
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,8 +1225,7 @@ GameObject:
   - component: {fileID: 558224140}
   - component: {fileID: 558224139}
   - component: {fileID: 558224142}
-  - component: {fileID: 558224141}
-  - component: {fileID: 558224144}
+  - component: {fileID: 558224145}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1225,25 +1277,9 @@ Transform:
   - {fileID: 449226992}
   - {fileID: 511897690}
   - {fileID: 1051850584}
+  - {fileID: 35763099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &558224141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558224137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1598e151528c74ea9a51b800892f86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tapeForce: 4
-  _speed: 2.5
-  _rotationSpeed: 1
-  _maxRotationZ: 35
-  _minRotationZ: -60
 --- !u!114 &558224142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,11 +1294,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletSpawner: {fileID: 511897691}
   _inputReader: {fileID: 519420034}
-  _explosion: {fileID: 1445299937}
-  _mover: {fileID: 558224141}
+  _mover: {fileID: 35763100}
   _detector: {fileID: 1051850582}
-  _game: {fileID: 519420035}
---- !u!114 &558224144
+  _exploder: {fileID: 558224145}
+--- !u!114 &558224145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1271,10 +1306,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 558224137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c89f25b41a597f046af447a0373e4721, type: 3}
+  m_Script: {fileID: 11500000, guid: f486a82e88ab65b4bba0264553e3cf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _display: {fileID: 75863042}
+  _explosion: {fileID: 1445299937}
+  _delay: 0.7
 --- !u!1 &573789332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,8 +1709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6718e886ab8f0f143a9717cd7f4e223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosion: {fileID: 1445299937}
-  _delay: 0.7
 --- !u!70 &1051850583
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

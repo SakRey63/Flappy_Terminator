@@ -3,17 +3,20 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
+    [SerializeField] private KeyCode _keyE = KeyCode.E;
+    [SerializeField] private KeyCode _keySpace = KeyCode.Space;
+    
     public event Action Attacked;
     public event Action Forced; 
     
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(_keyE))
         {
             Attacked?.Invoke();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(_keySpace))
         {
             Forced?.Invoke();
         }

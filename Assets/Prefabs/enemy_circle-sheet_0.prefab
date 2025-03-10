@@ -156,8 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6718e886ab8f0f143a9717cd7f4e223f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosion: {fileID: 2227869201041515189}
-  _delay: 0.7
 --- !u!1 &5282760515559218588
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9137240680303097659}
   - component: {fileID: 512563903589375045}
+  - component: {fileID: -6632140010714087553}
   m_Layer: 0
   m_Name: enemy_circle-sheet_0
   m_TagString: Untagged
@@ -327,5 +326,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawner: {fileID: 5357231397857175830}
   _detector: {fileID: 6291390847794927375}
-  _explosion: {fileID: 2227869201041515189}
+  _animator: {fileID: 2227869201041515189}
+  _exploder: {fileID: -6632140010714087553}
   _delay: 1
+--- !u!114 &-6632140010714087553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659118932813566519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f486a82e88ab65b4bba0264553e3cf7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosion: {fileID: 2227869201041515189}
+  _delay: 0.7

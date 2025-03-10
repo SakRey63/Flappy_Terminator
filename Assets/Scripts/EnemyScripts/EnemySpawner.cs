@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +10,7 @@ public class EnemySpawner : Spawner<Enemy>
     [SerializeField] private float _maxPositionY = 5f;
     [SerializeField] private Enemy[] _enemies;
     [SerializeField] private float _delay = 2f;
-    [SerializeField] private Game _game;
+    [SerializeField] private DisplayCounter _display;
 
     private void Start()
     {
@@ -33,20 +34,23 @@ public class EnemySpawner : Spawner<Enemy>
         return _enemies[Random.Range(0, _enemies.Length)];
     }
     
-    protected override void GetAction(Enemy enemy)
+    protected override void SetAction(Enemy enemy)
     {
         enemy.ReturnToPool += ReturnToPool;
         
-        enemy.SetGame(_game);
-        
         enemy.transform.position = new Vector2(_point.position.x, Random.Range(_minPositionY, _maxPositionY));
         
-        base.GetAction(enemy);
+        base.SetAction(enemy);
     }
 
     private void ReturnToPool(Enemy enemy)
     {
         enemy.ReturnToPool -= ReturnToPool;
+
+        if (enemy.IsDestroyed)
+        {
+            _display.ChangeValue();
+        }
         
         enemy.Reset();
         

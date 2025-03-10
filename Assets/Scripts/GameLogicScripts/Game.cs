@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -9,8 +8,6 @@ public class Game : MonoBehaviour
     [SerializeField] private DisplayCounter _display;
 
     private Vector2 _startPlayerPosition;
-
-    public event Action FinishedGame;
     
     private void OnEnable()
     {
@@ -35,15 +32,8 @@ public class Game : MonoBehaviour
         _endGameScreen.Close();
     }
     
-    public void ChangeValue()
-    {
-        _display.ChangeValue();
-    }
-    
     private void OnDestroyPlayer()
     {
-        FinishedGame?.Invoke();
-        
         StopGame();
         
         _endGameScreen.Open();

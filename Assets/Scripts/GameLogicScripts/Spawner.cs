@@ -14,7 +14,7 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
     {
         _pool = new ObjectPool<T>(
             createFunc: () => Instantiate(ChoosePrefab()),
-            actionOnGet: (obj) => GetAction(obj),
+            actionOnGet: (obj) => SetAction(obj),
             actionOnRelease: (obj) => obj.gameObject.SetActive(false),
             actionOnDestroy: (obj) => Destroy(obj),
             collectionCheck: true,
@@ -27,7 +27,7 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
         return Prefab;
     }
     
-    protected virtual void GetAction(T obj)
+    protected virtual void SetAction(T obj)
     {
         obj.gameObject.SetActive(true);
     }

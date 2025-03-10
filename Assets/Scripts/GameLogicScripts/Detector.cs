@@ -1,11 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class Detector : MonoBehaviour
 {
-    [SerializeField] private ExplodeAnimator _explosion;
-    [SerializeField] private float _delay = 0.7f;
-
+    public bool IsFinished { get; private set; }
     public bool IsDestroyed { get; private set; }
     public float Direction { get; private set; }
     
@@ -13,7 +10,7 @@ public class Detector : MonoBehaviour
     {
         if (other.TryGetComponent<Finish>(out _))
         {
-            StartCoroutine(Explode());
+            IsFinished = true;
         }
         else if(other.TryGetComponent(out Bullet bullet))
         {
@@ -21,24 +18,14 @@ public class Detector : MonoBehaviour
             {
                 bullet.ReturnToPool();
                 
-                StartCoroutine(Explode());
+                IsDestroyed = true;
             }
         }
     }
-    
-    private IEnumerator Explode()
-    {
-        WaitForSeconds delay = new WaitForSeconds(_delay);
-    
-        _explosion.ExplosionAnimation(true);
-        
-        yield return delay;
 
-        IsDestroyed = true;
-    }
-
-    public void ChangeStatus()
+    public void SetStatus()
     {
+        IsFinished = false;
         IsDestroyed = false;
     }
 

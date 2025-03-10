@@ -1,15 +1,14 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private BulletSpawner _bulletSpawner;
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private ExplodeAnimator _explosion;
     [SerializeField] private PlayerMover _mover;
     [SerializeField] private Detector _detector;
-    [SerializeField] private Game _game;
+    [SerializeField] private Exploder _exploder;
     
     private float _direction = 1;
     private bool _isForce = false;
@@ -37,11 +36,20 @@ public class Player : MonoBehaviour
             _isForce = false;
         } 
         
-        if (_detector.IsDestroyed)
+        if (_detector.IsDestroyed || _detector.IsFinished)
         {
-            Dead();
+           _detector.SetStatus();
+           
+           _detector.gameObject.SetActive(false);
             
-            _detector.ChangeStatus();
+           _exploder.Explode();
+        }
+
+        if (_exploder.IsExplosion)
+        {
+            _exploder.SetStatus();
+            
+            Dead();
         }
     }
 
@@ -49,12 +57,12 @@ public class Player : MonoBehaviour
     {
         transform.position = new Vector2(position.x, position.y);
         
-        _explosion.ExplosionAnimation(false);
+        _detector.gameObject.SetActive(true);
     }
 
     private void Attacked()
     {
-        _bulletSpawner.СreateBullet(transform.rotation, _direction, _game);
+        _bulletSpawner.SetParametersShot(transform.rotation, _direction);
     }
 
     private void SetForced()
@@ -62,7 +70,7 @@ public class Player : MonoBehaviour
         _isForce = true;
     }
 
-    private void Dead   ()
+    private void Dead()
     {
         Killed?.Invoke();
     }
